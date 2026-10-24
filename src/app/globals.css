@@ -1,0 +1,925 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   CAMPUSCONNECT PREMIUM DESIGN SYSTEM
+   Linear-inspired, enterprise SaaS aesthetic.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    /* Light Mode Design Tokens */
+    --cc-bg: #f8fafc;
+    --cc-bg-secondary: #f1f5f9;
+    --cc-surface: #ffffff;
+    --cc-surface-raised: #ffffff;
+    --cc-card: #ffffff;
+    --cc-card-hover: #fafbff;
+    --cc-text: #0f172a;
+    --cc-text-secondary: #334155;
+    --cc-text-muted: #64748b;
+    --cc-text-placeholder: #94a3b8;
+    --cc-border: #e2e8f0;
+    --cc-border-strong: #cbd5e1;
+    --cc-input-bg: #ffffff;
+    --cc-input-border: #d1d5db;
+    --cc-input-focus: #6366f1;
+    --cc-hover: rgba(99, 102, 241, 0.06);
+    --cc-focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.18);
+    --cc-primary: #6366f1;
+    --cc-primary-hover: #4f46e5;
+    --cc-primary-subtle: #eef2ff;
+    --cc-success: #10b981;
+    --cc-success-subtle: #ecfdf5;
+    --cc-warning: #f59e0b;
+    --cc-warning-subtle: #fffbeb;
+    --cc-error: #ef4444;
+    --cc-error-subtle: #fef2f2;
+    --cc-shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+    --cc-shadow-hover: 0 4px 12px -2px rgb(0 0 0 / 0.10), 0 2px 6px -2px rgb(0 0 0 / 0.06);
+    --cc-shadow-modal: 0 25px 50px -12px rgb(0 0 0 / 0.18);
+    --cc-radius: 12px;
+    --cc-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    /* Dark Mode Design Tokens */
+    --cc-bg: #080c14;
+    --cc-bg-secondary: #0d1424;
+    --cc-surface: #111827;
+    --cc-surface-raised: #141e30;
+    --cc-card: #111827;
+    --cc-card-hover: #141e2e;
+    --cc-text: #f8fafc;
+    --cc-text-secondary: #e2e8f0;
+    --cc-text-muted: #94a3b8;
+    --cc-text-placeholder: #64748b;
+    --cc-border: #1e293b;
+    --cc-border-strong: #2d3f5a;
+    --cc-input-bg: #0f1a2e;
+    --cc-input-border: #243048;
+    --cc-input-focus: #818cf8;
+    --cc-hover: rgba(99, 102, 241, 0.10);
+    --cc-focus-ring: 0 0 0 3px rgba(129, 140, 248, 0.25);
+    --cc-primary: #818cf8;
+    --cc-primary-hover: #6366f1;
+    --cc-primary-subtle: rgba(99, 102, 241, 0.12);
+    --cc-success: #34d399;
+    --cc-success-subtle: rgba(52, 211, 153, 0.10);
+    --cc-warning: #fbbf24;
+    --cc-warning-subtle: rgba(251, 191, 36, 0.10);
+    --cc-error: #f87171;
+    --cc-error-subtle: rgba(248, 113, 113, 0.10);
+    --cc-shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.35), 0 1px 2px -1px rgb(0 0 0 / 0.20);
+    --cc-shadow-hover: 0 4px 16px -2px rgb(0 0 0 / 0.55), 0 2px 8px -2px rgb(0 0 0 / 0.30);
+    --cc-shadow-modal: 0 25px 50px -12px rgb(0 0 0 / 0.60);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--cc-bg);
+    color: var(--cc-text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.15s ease;
+  }
+
+  /* Smooth focus for keyboard nav */
+  *:focus-visible {
+    outline: none;
+    box-shadow: var(--cc-focus-ring);
+  }
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2d3f5a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ==========================================================================
+   CUSTOM CURSOR SYSTEM
+   Subtle, professional. Respects reduced-motion.
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+
+  a, button, [role="button"], label[for], select,
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
+
+  input, textarea {
+    cursor: text;
+  }
+
+  [disabled], [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+@keyframes aiPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes emergencyGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgb(239 68 68 / 0.5), 0 4px 15px -2px rgb(239 68 68 / 0.4);
+  }
+  60% {
+    box-shadow: 0 0 0 12px rgb(239 68 68 / 0), 0 4px 15px -2px rgb(239 68 68 / 0.4);
+  }
+}
+
+@keyframes checkmark {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes badgeDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes notificationBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+  60% { transform: translateY(-2px); }
+}
+
+/* ==========================================================================
+   ANIMATION UTILITY CLASSES
+   ========================================================================== */
+
+.animate-ai-pulse { animation: aiPulse 2s ease-in-out infinite; }
+.animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.25s ease-out forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.2s ease-out forwards; }
+.animate-scale-in { animation: scaleIn 0.18s ease-out forwards; }
+.animate-slide-down { animation: slideDown 0.2s ease-out forwards; }
+.animate-pulse-soft { animation: pulseSoft 2.5s ease-in-out infinite; }
+.animate-emergency-glow { animation: emergencyGlow 2.2s ease-in-out infinite; }
+.animate-badge-dot { animation: badgeDot 2s ease-in-out infinite; }
+.animate-notification { animation: notificationBounce 0.6s ease-out; }
+
+/* Shimmer skeleton loading */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 0%,
+    #e2e8f0 40%,
+    #f1f5f9 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+.dark .shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    #1e293b 0%,
+    #263346 40%,
+    #1e293b 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   PREMIUM CARD SYSTEM
+   ========================================================================== */
+
+.cc-card {
+  background: var(--cc-card);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius);
+  box-shadow: var(--cc-shadow-card);
+  transition: box-shadow var(--cc-transition), border-color var(--cc-transition), transform var(--cc-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card subtle cursor-following ambient light */
+.cc-card::before,
+.cc-metric-card::after,
+.interactive-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    300px circle at var(--card-cursor-x, -999px) var(--card-cursor-y, -999px),
+    rgba(56, 189, 248, 0.08),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cc-card:hover::before,
+.cc-metric-card:hover::after,
+.interactive-card:hover::before {
+  opacity: 1;
+}
+
+.dark .cc-card::before,
+.dark .cc-metric-card::after,
+.dark .interactive-card::before {
+  background: radial-gradient(
+    320px circle at var(--card-cursor-x, -999px) var(--card-cursor-y, -999px),
+    rgba(56, 189, 248, 0.12),
+    rgba(99, 102, 241, 0.05) 50%,
+    transparent 80%
+  );
+}
+
+.cc-card-hover:hover {
+  box-shadow: var(--cc-shadow-hover);
+  border-color: var(--cc-border-strong);
+  transform: translateY(-1px);
+}
+
+/* Metric / stat cards get a lifted treatment */
+.cc-metric-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--cc-card);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius);
+  box-shadow: var(--cc-shadow-card);
+  transition: box-shadow var(--cc-transition), border-color var(--cc-transition), transform var(--cc-transition);
+}
+
+.cc-metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cc-metric-card:hover {
+  box-shadow: var(--cc-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   TEXT HOVER WATER RIPPLE / LIQUID INTERACTION
+   ========================================================================== */
+
+h1, h2, h3, h4, .text-ripple, [data-cursor="text"] {
+  transition: text-shadow 220ms ease, transform 180ms ease, color 150ms ease;
+}
+
+h1:hover, h2:hover, h3:hover, .text-ripple:hover {
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.22);
+}
+
+.dark h1:hover, .dark h2:hover, .dark h3:hover, .dark .text-ripple:hover {
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.35), 0 0 4px rgba(99, 102, 241, 0.25);
+}
+
+/* ==========================================================================
+   BUTTON CURSOR-FOLLOWING RADIAL LIGHT & MAGNETIC LIFT
+   ========================================================================== */
+
+button, [role="button"], .cc-btn {
+  position: relative;
+  transition: transform 180ms cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 180ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+/* Cursor-following radial light layer on buttons */
+button:not(:disabled)::after,
+.cc-btn:not(:disabled)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    100px circle at var(--cursor-x, -999px) var(--cursor-y, -999px),
+    rgba(255, 255, 255, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+button:not(:disabled):hover::after,
+.cc-btn:not(:disabled):hover::after {
+  opacity: 1;
+}
+
+.dark button:not(:disabled)::after,
+.dark .cc-btn:not(:disabled)::after {
+  background: radial-gradient(
+    110px circle at var(--cursor-x, -999px) var(--cursor-y, -999px),
+    rgba(56, 189, 248, 0.25),
+    rgba(99, 102, 241, 0.1) 60%,
+    transparent 80%
+  );
+}
+
+/* Primary buttons enhanced radial gleam */
+.cc-btn-primary::after,
+button.bg-indigo-600::after,
+button.bg-emerald-600::after {
+  background: radial-gradient(
+    120px circle at var(--cursor-x, -999px) var(--cursor-y, -999px),
+    rgba(255, 255, 255, 0.28),
+    rgba(56, 189, 248, 0.2) 50%,
+    transparent 80%
+  ) !important;
+}
+
+/* ==========================================================================
+   PREMIUM BUTTON SYSTEM
+   ========================================================================== */
+
+.cc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--cc-transition);
+  transition-property: background-color, color, border-color, box-shadow, transform, opacity;
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-btn:active:not(:disabled) {
+  transform: scale(0.98) translateY(0.5px) !important;
+  box-shadow: none !important;
+}
+
+.cc-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cc-btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.12), 0 1px 2px -1px rgb(99 102 241 / 0.25);
+}
+
+.cc-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 4px 12px -2px rgb(99 102 241 / 0.45), 0 2px 4px -1px rgb(0 0 0 / 0.08);
+  transform: translateY(-1px) scale(1.01);
+}
+
+.cc-btn-secondary {
+  background: var(--cc-surface);
+  color: var(--cc-text-secondary);
+  border-color: var(--cc-border);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.cc-btn-secondary:hover:not(:disabled) {
+  background: var(--cc-card-hover);
+  border-color: var(--cc-border-strong);
+  box-shadow: 0 2px 6px -1px rgb(0 0 0 / 0.08);
+  transform: translateY(-1px);
+}
+
+.cc-btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.12), 0 1px 2px -1px rgb(239 68 68 / 0.25);
+}
+
+.cc-btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  box-shadow: 0 4px 12px -2px rgb(239 68 68 / 0.45), 0 2px 4px -1px rgb(0 0 0 / 0.08);
+  transform: translateY(-1px) scale(1.01);
+}
+
+.cc-btn-sm { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+.cc-btn-md { padding: 0.5rem 1rem; font-size: 0.875rem; }
+.cc-btn-lg { padding: 0.625rem 1.25rem; font-size: 0.9375rem; }
+
+/* ==========================================================================
+   PREMIUM INPUT SYSTEM
+   ========================================================================== */
+
+.cc-input {
+  width: 100%;
+  background-color: var(--cc-input-bg);
+  border: 1.5px solid var(--cc-input-border);
+  border-radius: 10px;
+  color: var(--cc-text);
+  font-size: 0.9375rem;
+  padding: 0.5625rem 0.875rem;
+  transition: border-color var(--cc-transition), box-shadow var(--cc-transition), background-color var(--cc-transition);
+  appearance: none;
+}
+
+.cc-input::placeholder {
+  color: var(--cc-text-placeholder);
+}
+
+.cc-input:hover:not(:disabled):not(:focus) {
+  border-color: var(--cc-border-strong);
+}
+
+.cc-input:focus {
+  outline: none;
+  border-color: var(--cc-input-focus);
+  box-shadow: var(--cc-focus-ring);
+  background-color: var(--cc-surface);
+}
+
+.cc-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--cc-bg-secondary);
+}
+
+/* ==========================================================================
+   GLOBAL DARK MODE OVERRIDES
+   Ensures all existing Tailwind classes adapt cleanly.
+   ========================================================================== */
+
+/* Body & backgrounds */
+html.dark body {
+  background-color: var(--cc-bg);
+  color: var(--cc-text);
+}
+
+/* White surfaces */
+html.dark .bg-white {
+  background-color: #111827;
+}
+html.dark .bg-slate-50 {
+  background-color: #0d1424;
+}
+html.dark .bg-slate-100 {
+  background-color: #1a2234;
+}
+html.dark .bg-slate-200 {
+  background-color: #222f44;
+}
+
+/* Borders */
+html.dark .border-slate-100,
+html.dark .border-slate-200 {
+  border-color: #1e293b;
+}
+html.dark .border-slate-300 {
+  border-color: #2d3f5a;
+}
+
+/* Text */
+html.dark .text-slate-900 { color: #f8fafc; }
+html.dark .text-slate-800 { color: #f1f5f9; }
+html.dark .text-slate-700 { color: #e2e8f0; }
+html.dark .text-slate-600 { color: #cbd5e1; }
+html.dark .text-slate-500 { color: #94a3b8; }
+html.dark .text-slate-400 { color: #64748b; }
+
+/* Form controls */
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark textarea,
+html.dark select {
+  background-color: #0f1a2e;
+  border-color: #243048;
+  color: #f8fafc;
+}
+html.dark input:not([type="checkbox"]):not([type="radio"])::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
+}
+html.dark input:not([type="checkbox"]):not([type="radio"]):focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  background-color: #111f3a;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.20);
+}
+html.dark input:not([type="checkbox"]):not([type="radio"]):hover:not(:focus),
+html.dark textarea:hover:not(:focus),
+html.dark select:hover:not(:focus) {
+  border-color: #2d3f5a;
+}
+
+/* Dark mode card-like elements */
+html.dark .bg-slate-800 { background-color: #141e30; }
+html.dark .bg-slate-900 { background-color: #0d1424; }
+html.dark .bg-slate-950 { background-color: #080c14; }
+
+/* Hover states */
+html.dark .hover\:bg-slate-50:hover { background-color: #131c2c; }
+html.dark .hover\:bg-slate-100:hover { background-color: #1a2438; }
+html.dark .hover\:bg-slate-800:hover { background-color: #1a2438; }
+
+/* Status badges — dark mode refinements */
+html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.10); }
+html.dark .bg-purple-50 { background-color: rgba(168, 85, 247, 0.10); }
+html.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.10); }
+html.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.10); }
+html.dark .bg-teal-50 { background-color: rgba(20, 184, 166, 0.10); }
+html.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.10); }
+html.dark .bg-orange-50 { background-color: rgba(249, 115, 22, 0.10); }
+html.dark .bg-green-50 { background-color: rgba(34, 197, 94, 0.10); }
+html.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.10); }
+html.dark .bg-rose-50 { background-color: rgba(244, 63, 94, 0.10); }
+html.dark .bg-cyan-50 { background-color: rgba(6, 182, 212, 0.10); }
+html.dark .bg-yellow-50 { background-color: rgba(234, 179, 8, 0.10); }
+html.dark .bg-pink-50 { background-color: rgba(236, 72, 153, 0.10); }
+
+html.dark .text-blue-700 { color: #93c5fd; }
+html.dark .text-purple-700 { color: #c4b5fd; }
+html.dark .text-amber-700 { color: #fcd34d; }
+html.dark .text-emerald-700 { color: #6ee7b7; }
+html.dark .text-teal-700 { color: #5eead4; }
+html.dark .text-red-700 { color: #fca5a5; }
+html.dark .text-orange-700 { color: #fdba74; }
+html.dark .text-green-700 { color: #86efac; }
+html.dark .text-indigo-700 { color: #a5b4fc; }
+html.dark .text-rose-700 { color: #fda4af; }
+
+html.dark .border-blue-200 { border-color: rgba(59, 130, 246, 0.25); }
+html.dark .border-purple-200 { border-color: rgba(168, 85, 247, 0.25); }
+html.dark .border-amber-200 { border-color: rgba(245, 158, 11, 0.25); }
+html.dark .border-emerald-200 { border-color: rgba(16, 185, 129, 0.25); }
+html.dark .border-teal-200 { border-color: rgba(20, 184, 166, 0.25); }
+html.dark .border-red-200 { border-color: rgba(239, 68, 68, 0.25); }
+html.dark .border-orange-200 { border-color: rgba(249, 115, 22, 0.25); }
+html.dark .border-orange-300 { border-color: rgba(249, 115, 22, 0.30); }
+html.dark .border-green-200 { border-color: rgba(34, 197, 94, 0.25); }
+html.dark .border-indigo-200 { border-color: rgba(99, 102, 241, 0.25); }
+
+/* ==========================================================================
+   STUDENT PORTAL (Signal Thread) — Light Mode Defaults
+   ========================================================================== */
+
+.student-daylight { color: #14182B; }
+body:has(.student-daylight) { background: #F6F4EF; }
+.student-daylight .bg-white { background-color: #FFFFFF; }
+.student-daylight .border-slate-200 { border-color: #E4E0D6; }
+.student-daylight .bg-indigo-600, .student-daylight .bg-emerald-600 { background-color: #0B7F76; }
+.student-daylight .hover\:bg-indigo-700:hover, .student-daylight .hover\:bg-emerald-700:hover { background-color: #08685F; }
+.student-daylight .text-indigo-600, .student-daylight .text-indigo-700 { color: #0B7F76; }
+.student-daylight button { transition-duration: 120ms; }
+.student-daylight :is(button,input,textarea):focus-visible { outline: 3px solid #0B7F76; outline-offset: 3px; }
+.student-daylight .rounded-2xl { border-radius: 14px; }
+.signal-trace { padding: 24px; border: 1px solid #E4E0D6; background: #FFFFFF; border-radius: 14px; }
+.signal-thread { margin-left: 7px; border-left: 1px solid #B9D8D3; padding-left: 24px; }
+.signal-thread li { position: relative; min-height: 38px; padding-bottom: 14px; color: #525966; font-size: 13px; }
+.signal-thread li:last-child { padding-bottom: 0; min-height: 20px; }
+.signal-node { position: absolute; left: -32px; top: 1px; width: 15px; height: 15px; border-radius: 50%; background: #0B7F76; border: 3px solid #FFFFFF; box-shadow: 0 0 0 1px #0B7F76; color: white; display: flex; align-items: center; justify-content: center; }
+.signal-result .signal-node { width: 20px; height: 20px; left: -35px; border-width: 2px; }
+.signal-result li { padding-bottom: 19px; }
+.signal-label { color: #0B7F76; text-transform: uppercase; font-size: 10px; letter-spacing: .12em; font-weight: 800; }
+
+/* ==========================================================================
+   STUDENT PORTAL — Dark Mode Overrides
+   ========================================================================== */
+
+html.dark body:has(.student-daylight) {
+  background: #090d16;
+}
+html.dark .student-daylight {
+  color: #f1f5f9;
+}
+html.dark .student-daylight h1,
+html.dark .student-daylight h2,
+html.dark .student-daylight h3,
+html.dark .student-daylight .text-\[\#14182B\] {
+  color: #f8fafc;
+}
+html.dark .student-daylight .text-\[\#666A73\],
+html.dark .student-daylight .text-\[\#525966\] {
+  color: #94a3b8;
+}
+html.dark .student-daylight .border-\[\#E4E0D6\] {
+  border-color: #1e293b;
+}
+html.dark .student-daylight .bg-white {
+  background-color: #111827;
+}
+html.dark .student-daylight .signal-trace {
+  background: #111827;
+  border-color: #1e293b;
+}
+html.dark .student-daylight .signal-thread {
+  border-left-color: #0e3b38;
+}
+html.dark .student-daylight .signal-node {
+  border-color: #111827;
+}
+
+/* ==========================================================================
+   INTERACTIVE ELEMENT MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Cards — hover lift */
+.interactive-card {
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card:hover {
+  box-shadow: var(--cc-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Navigation items — smooth indicator */
+.nav-item-active {
+  position: relative;
+}
+
+.nav-item-active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #6366f1;
+  border-radius: 2px 2px 0 0;
+  animation: fadeIn 0.15s ease-out;
+}
+
+/* Dropdown / popover menus */
+.cc-dropdown {
+  animation: slideDown 0.18s ease-out forwards;
+  transform-origin: top right;
+}
+
+/* Modal backdrops & containers */
+.cc-modal-backdrop {
+  animation: fadeIn 0.15s ease-out forwards;
+}
+
+.cc-modal-container {
+  animation: scaleIn 0.2s cubic-bezier(0.34, 1.20, 0.64, 1) forwards;
+}
+
+/* ==========================================================================
+   STATUS BADGE DARK MODE POLISH
+   These improve contrast/legibility in dark mode for inline status chips.
+   ========================================================================== */
+
+html.dark span[class*="bg-blue-50"][class*="text-blue-700"] {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #93c5fd !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+}
+html.dark span[class*="bg-purple-50"][class*="text-purple-700"] {
+  background-color: rgba(168, 85, 247, 0.12) !important;
+  color: #c4b5fd !important;
+  border-color: rgba(168, 85, 247, 0.25) !important;
+}
+html.dark span[class*="bg-amber-50"][class*="text-amber-700"] {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+html.dark span[class*="bg-emerald-50"][class*="text-emerald-700"] {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+html.dark span[class*="bg-teal-50"][class*="text-teal-700"] {
+  background-color: rgba(20, 184, 166, 0.12) !important;
+  color: #5eead4 !important;
+  border-color: rgba(20, 184, 166, 0.25) !important;
+}
+html.dark span[class*="bg-red-50"][class*="text-red-700"] {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+html.dark span[class*="bg-orange-50"][class*="text-orange-700"] {
+  background-color: rgba(249, 115, 22, 0.12) !important;
+  color: #fdba74 !important;
+  border-color: rgba(249, 115, 22, 0.25) !important;
+}
+html.dark span[class*="bg-slate-100"][class*="text-slate-600"] {
+  background-color: rgba(100, 116, 139, 0.15) !important;
+  color: #94a3b8 !important;
+  border-color: rgba(100, 116, 139, 0.20) !important;
+}
+
+/* ==========================================================================
+   EMERGENCY BUTTON — Tasteful Attention (Not Flashing)
+   ========================================================================== */
+
+.emergency-attention {
+  position: relative;
+}
+
+.emergency-attention::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: transparent;
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  animation: emergencyGlow 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   FORM POLISH
+   ========================================================================== */
+
+/* Focus ring on form inputs */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.20);
+}
+
+/* File/drop zone */
+.dropzone {
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.dropzone:hover,
+.dropzone.drag-over {
+  border-color: #6366f1;
+  background-color: rgba(99, 102, 241, 0.04);
+}
+html.dark .dropzone:hover,
+html.dark .dropzone.drag-over {
+  border-color: #818cf8;
+  background-color: rgba(129, 140, 248, 0.06);
+}
+
+/* ==========================================================================
+   TABLE POLISH
+   ========================================================================== */
+
+.cc-table-row {
+  transition: background-color 150ms ease;
+}
+.cc-table-row:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+}
+html.dark .cc-table-row:hover {
+  background-color: rgba(129, 140, 248, 0.06);
+}
+
+/* ==========================================================================
+   NAVBAR REFINEMENTS
+   ========================================================================== */
+
+.cc-navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+html.dark .cc-navbar {
+  background: rgba(13, 20, 36, 0.95);
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+/* ==========================================================================
+   LOADING SKELETON
+   ========================================================================== */
+
+.skeleton {
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+html.dark .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+}
+
+/* ==========================================================================
+   REDUCED MOTION — FULL OVERRIDE
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .emergency-attention::before {
+    animation: none !important;
+  }
+}
